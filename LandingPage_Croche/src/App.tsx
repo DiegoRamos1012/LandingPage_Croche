@@ -1,6 +1,6 @@
 import "./App.css";
 import NavBar from "./components/Navbar";
-import Header from "./components/Header"
+import Header from "./components/Header";
 import CarouselMarquee from "./components/CarouselMarquee";
 import ProductsSection from "./components/ProductsSection";
 import ReviewsSection from "./components/ReviewsSection";

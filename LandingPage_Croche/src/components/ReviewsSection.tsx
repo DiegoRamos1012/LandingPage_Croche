@@ -4,11 +4,7 @@ type Review = {
   text: string;
 };
 
-export default function ReviewsSection({
-  items,
-}: {
-  items: Review[];
-}) {
+export default function ReviewsSection({ items }: { items: Review[] }) {
   return (
     <section className="reviews-section" id="avaliacoes">
       <h2>O que dizem nossos clientes</h2>
