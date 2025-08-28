@@ -1,9 +1,9 @@
 import "./App.css";
-import NavBar from "./components/NavBar";
+import NavBar from "./components/Navbar";
 import Header from "./components/Header"
 import CarouselMarquee from "./components/CarouselMarquee";
 import ProductsSection from "./components/ProductsSection";
-import TestimonialsSection from "./components/ReviewsSection";
+import ReviewsSection from "./components/ReviewsSection";
 import ContactSection from "./components/ContactSection";
 import Footer from "./components/Footer";
 
@@ -28,7 +28,7 @@ const products = [
   },
 ];
 
-const testimonials = [
+const reviews = [
   {
     name: "Ana Souza",
     city: "Belo Horizonte/MG",
@@ -53,7 +53,7 @@ function App() {
       <Header />
       <CarouselMarquee items={products} />
       <ProductsSection items={products} />
-      <TestimonialsSection items={testimonials} />
+      <ReviewsSection items={reviews} />
       <ContactSection />
       <Footer />
     </div>
