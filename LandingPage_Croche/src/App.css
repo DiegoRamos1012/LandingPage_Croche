@@ -28,9 +28,13 @@ html,
 }
 
 .landing-container {
-  max-width: 100vw;
-  margin: 0;
-  padding: 0;
+  display: flex;
+  flex-direction: column;
+  /* trocar center por stretch para que headers/footers ocupem 100% e o main fique centralizável */
+  align-items: stretch;
+  gap: 1rem;
+  width: 100%;
+  box-sizing: border-box;
 }
 
 .header {
@@ -86,7 +90,7 @@ html,
 
 .carousel-section,
 .products-section,
-.testimonials-section,
+.reviews-section,
 .contact-section {
   width: 100%;
   margin: 2.5rem 0 2rem 0;
@@ -178,7 +182,7 @@ html,
 }
 
 .products-section h2,
-.testimonials-section h2,
+.reviews-section h2,
 .carousel-section h2 {
   text-align: center;
 }
@@ -210,13 +214,13 @@ html,
   box-shadow: 0 2px 8px var(--pink-medium);
 }
 
-.testimonials-grid {
+.reviews-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
   gap: 1.5rem;
   justify-items: stretch;
 }
-.testimonial-card {
+.review-card {
   background: var(--white);
   border-radius: 1.2rem;
   box-shadow: 0 2px 16px var(--pink-medium);
@@ -224,12 +228,12 @@ html,
   text-align: left;
   font-size: 1.05rem;
 }
-.testimonial-text {
+.review-text {
   font-style: italic;
   color: var(--text-medium);
   margin-bottom: 0.7rem;
 }
-.testimonial-author {
+.review-author {
   font-weight: bold;
   color: var(--pink-dark);
   font-size: 0.98rem;
@@ -261,7 +265,7 @@ html,
   padding: 2rem 0 1rem 0;
   margin-top: 2.5rem;
   text-align: center;
-  width: 100vw;
+  width: 100%;
   left: 0;
   right: 0;
   margin-left: 0;
@@ -339,7 +343,7 @@ html,
 }
 
 .navbar {
-  width: 100vw;
+  width: 100%;
   background: rgba(201, 123, 166, 0.92);
   position: sticky;
   top: 0;
@@ -398,7 +402,7 @@ html,
 @media (min-width: 1200px) {
   .carousel-section,
   .products-section,
-  .testimonials-section,
+  .reviews-section,
   .contact-section {
     padding-left: 10vw;
     padding-right: 10vw;
@@ -447,5 +451,182 @@ html,
   #contato {
     scroll-margin-top: 60px;
     padding-top: 0.2rem;
+  }
+}
+
+/* ===== App layout refinements & PrimeReact overrides ===== */
+
+/* Centraliza e organiza o container principal */
+.landing-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+/* Menubar (PrimeReact) visual */
+.p-menubar {
+  background: rgba(201, 123, 166, 0.96);
+  border: none;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.06);
+  padding: 0.25rem 1rem;
+  border-bottom: 1px solid var(--pink-medium);
+}
+.p-menubar .p-menubar-start {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+.p-menubar .p-menubar-start img {
+  width: 56px;
+  height: 56px;
+  object-fit: cover;
+  border-radius: 8px;
+  box-shadow: 0 4px 14px rgba(201, 123, 166, 0.18);
+}
+.p-menubar .p-menubar-start h1 {
+  margin: 0;
+  font-family: "Pacifico", cursive;
+  color: var(--pink-dark);
+  font-size: 1.1rem;
+  line-height: 1;
+}
+.p-menubar .p-menubar-start small {
+  color: var(--text-medium);
+  display: block;
+  line-height: 1;
+  font-size: 0.8rem;
+}
+
+/* Menu items styling */
+.p-menubar .p-menuitem-link {
+  color: #fff !important;
+  font-weight: 600;
+  margin: 0 0.4rem;
+  border-radius: 6px;
+  padding: 0.28rem 0.6rem;
+}
+.p-menubar .p-menuitem-link:hover,
+.p-menubar .p-menuitem-link:focus {
+  color: var(--pink-light) !important;
+  background: rgba(255, 255, 255, 0.03) !important;
+}
+
+/* Main container consistency (in case inline styles differ) */
+main {
+  width: 100%;
+  max-width: 1200px;
+  padding: 2rem 1rem;
+  box-sizing: border-box;
+}
+
+/* Headings */
+h2 {
+  margin: 0 0 0.6rem 0;
+  text-align: center;
+  color: var(--text-dark);
+}
+
+/* PrimeReact Card / Carousel tweaks */
+.p-card {
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 6px 24px rgba(201, 123, 166, 0.12);
+  transition: transform 0.18s ease, box-shadow 0.18s ease;
+}
+.p-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 12px 36px rgba(201, 123, 166, 0.16);
+}
+.p-carousel .p-carousel-container {
+  padding: 1rem 0;
+}
+.p-carousel .p-carousel-item {
+  padding: 0.5rem;
+  display: flex;
+  justify-content: center;
+}
+.p-card img,
+.p-carousel .p-card img {
+  width: 100%;
+  height: 180px;
+  object-fit: cover;
+  border-radius: 8px;
+  display: block;
+  box-shadow: 0 4px 14px rgba(201, 123, 166, 0.08);
+}
+
+/* Review text */
+.p-card .p-text-secondary {
+  color: var(--text-medium);
+  font-size: 0.95rem;
+}
+
+/* Buttons */
+.p-button {
+  border-radius: 24px;
+  padding: 0.6rem 1rem;
+}
+.p-button.p-button-success {
+  background: var(--pink-dark);
+  border: none;
+  color: #fff;
+}
+.p-button.p-button-success:hover,
+.p-button.p-button-success:focus {
+  background: var(--pink-medium);
+  color: #fff;
+}
+
+/* Keep existing custom whatsapp button consistent with Prime styling */
+.whatsapp-btn {
+  display: inline-block;
+  background: var(--pink-dark);
+  color: #fff;
+  font-weight: 700;
+  padding: 0.7rem 1.25rem;
+  border-radius: 2rem;
+  text-decoration: none;
+  font-size: 1.05rem;
+  margin-top: 0.7rem;
+  transition: background 0.18s ease, transform 0.12s ease;
+}
+.whatsapp-btn:hover {
+  background: var(--pink-medium);
+  transform: translateY(-2px);
+}
+
+/* Footer adjustments */
+footer {
+  background: var(--pink-dark);
+  color: #fff;
+  width: 100%;
+  padding: 1.25rem 0;
+  margin-top: 2.5rem;
+}
+footer a {
+  color: #fff;
+  text-decoration: underline;
+}
+
+/* Accessibility / spacing for anchors */
+a:focus {
+  outline: 3px solid rgba(201, 123, 166, 0.25);
+  outline-offset: 2px;
+}
+
+/* Responsive tweaks */
+@media (max-width: 700px) {
+  .p-menubar .p-menubar-start h1 {
+    font-size: 1rem;
+  }
+  .p-card img,
+  .p-carousel .p-card img {
+    height: 140px;
+  }
+  .p-menubar {
+    padding: 0.15rem 0.6rem;
   }
 }
